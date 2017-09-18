@@ -13,6 +13,7 @@ class ADB():
         time.sleep(1)
 
     def power():
+        print("Pressing the virtual power button...")
         os.system("adb shell input keyevent KEYCODE_POWER")
 
     def home():
@@ -65,11 +66,11 @@ class Jarvis():
         if input(dialog) != "y":
             sys.exit()
 
-    def say_to_mom(text):
+    def say_to(contact,text):
         ADB.power()
         WhatsApp.launch()
         WhatsApp.chats_home()
-        WhatsApp.message_contact("Mom")
+        WhatsApp.message_contact(contact)
         ADB.type_text(text)
         Jarvis.confirm()
         WhatsApp.press_send()
