@@ -20,9 +20,17 @@ class ADB():
         os.system("adb shell input keyevent KEYCODE_HOME")
         time.sleep(1)
 
+    def adb_keyboard():
+        os.popen("adb shell ime set com.android.adbkeyboard/.AdbIME").read()
+        time.sleep(1)
+
+    def swiftkeyboard():
+        os.popen("adb shell ime set com.touchtype.swiftkey/com.touchtype.KeyboardService").read()
+        time.sleep(1)
+
     def type_text(text):
         print("Typing ... '%s'" % text)
-        os.system("adb shell input text %s" % text.replace(" ","%s"))
+        os.system('adb shell am broadcast -a ADB_INPUT_TEXT --es msg "%s"' % text.replace(" ","\ "))
 
     def screencap():
         os.system("adb shell screencap -p /sdcard/screen.png")
@@ -46,6 +54,7 @@ class WhatsApp():
         ADB.tap(890,129)         # Tap search icon top right
         ADB.type_text(full_name)
         ADB.tap(504,433)         # Select found contact
+        ADB.tap(400,1800)        # Taps the text box to launch keyboard
 
     def open_ancel():
         ADB.tap(677,493)
