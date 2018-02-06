@@ -12,6 +12,9 @@ class ADB():
         os.system("adb shell input tap %s %s" % (x,y))
         time.sleep(1)
 
+    def swipe(x0,y0,x1,y1):
+        os.system("adb shell input swipe %s %s %s %s" % (x0,y0,x1,y1))
+
     def power():
         print("Pressing the virtual power button...")
         os.system("adb shell input keyevent KEYCODE_POWER")
